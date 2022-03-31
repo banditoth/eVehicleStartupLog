@@ -15,6 +15,8 @@ namespace eVehicleStartupLog.Services
         {
             try
             {
+                Console.WriteLine(ex.ToString());
+
                 if (silent == false)
                 {
                     Application.Current.MainPage.DisplayAlert("Hiba történt", additionalMessage ?? "Kérjük próbálja újra végrehajtani a műveletet", "Rendben");

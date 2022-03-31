@@ -9,9 +9,9 @@ namespace eVehicleStartupLog.Interfaces
     {
         Task<Vehicle> GetVehicle(Guid id);
 
-        Task<IEnumerable<Vehicle>> GetAllVehicles();
+        Task<List<Vehicle>> GetAllVehicles();
 
-        Task<Vehicle> SaveVehicle(Vehicle vehicleToSave);
+        Task SaveVehicle(Vehicle vehicleToSave);
 
         Task DeleteVehicle(Vehicle vehicleToDelete);
     }

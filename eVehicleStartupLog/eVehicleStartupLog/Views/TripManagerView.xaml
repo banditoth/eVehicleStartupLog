@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="eVehicleStartupLog.Views.TripManagerView">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <StackLayout IsVisible="{Binding Path=HasRunningTrip}">
+                <Label Text="Rendszám"/>
+                <Label Text="{Binding Path=OnGoingTrip.Plate.PlateNumber}"/>
+                <Label Text="Jármű"/>
+                <Label Text="{Binding Path=OnGoingTrip.Vehicle.DisplayName}"/>
+                <Label Text="Alkalmazott"/>
+                <Label Text="{Binding Path=OnGoingTrip.Employee.FullName}"/>
+                <Label Text="Indítás helye"/>
+                <Label Text="{Binding Path=OnGoingTrip.StartAddress}"/>
+                <Label Text="Indítás ideje"/>
+                <Label Text="{Binding Path=OnGoingTrip.StartDateTime}"/>
+                <Button Text="Befejezés"
+                    Command="{Binding Path=EndTripCommand}"/>
+            </StackLayout>
+            <StackLayout>
+                <Picker ItemsSource="{Binding Path=Employees}"
+                        SelectedItem="{Binding Path=SelectedEmployee}"
+                        ItemDisplayBinding="{Binding Path=FullName}"/>
+                <Picker ItemsSource="{Binding Path=Plates}"
+                        SelectedItem="{Binding Path=SelectedPlate}"
+                        ItemDisplayBinding="{Binding Path=PlateNumber}"/>
+                <Picker ItemsSource="{Binding Path=Vehicles}"
+                        SelectedItem="{Binding Path=SelectedVehicle}"
+                        ItemDisplayBinding="{Binding Path=DisplayName}"/>
+                <Button Text="Új utazás idítása"
+                    Command="{Binding Path=StartTripCommand}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="eVehicleStartupLog.Views.EmployeeListView">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding Path=Items}"
+                      SelectionMode="None"
+                      x:Name="ListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference ListView}, Path=BindingContext.EditExistingCommand}"
+                                                          CommandParameter="{Binding Path=.}"/>
+                                </StackLayout.GestureRecognizers>
+                                <Label Text="Vezetéknév"/>
+                                <Label Text="{Binding Path=Entity.LastName}"/>
+                                <Label Text="Keresztnév"/>
+                                <Label Text="{Binding Path=Entity.FirstName}"/>
+                                <Label Text="Telefonszám"/>
+                                <Label Text="{Binding Path=Entity.PhoneNumber}"/>
+                                <Label Text="Vezetői engedély száma"/>
+                                <Label Text="{Binding Path=Entity.DriversLicenseId}"/>
+                                <Label Text="Személyi igazolvány száma"/>
+                                <Label Text="{Binding Path=Entity.PersonalId}"/>
+                                <Label Text="Alkalmazotti státusz kezdete"/>
+                                <Label Text="{Binding Path=Entity.EmploymentContractStartDate}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Új hozzáadása"
+                    Command="{Binding Path=AddNewCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

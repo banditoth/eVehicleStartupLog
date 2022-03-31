@@ -2,9 +2,10 @@
 <FlyoutPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:eVehicleStartupLog.Controls"
-    x:Class="eVehicleStartupLog.Views.MainFlyoutPage">
+    x:Class="eVehicleStartupLog.Views.MainFlyoutPage"
+    Title="eVehicleStartupLog">
     <FlyoutPage.Flyout>
-        <ContentPage>
+        <ContentPage Title="Flyout">
             <Grid>
                 <controls:MenuButton Text="Alkalmazottak"
                                      Grid.Row="0"

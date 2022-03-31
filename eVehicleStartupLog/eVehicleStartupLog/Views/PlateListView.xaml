@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="eVehicleStartupLog.Views.PlateListView">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding Path=Items}"
+                      SelectionMode="None"
+                      x:Name="ListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference ListView}, Path=BindingContext.EditExistingCommand}"
+                                                          CommandParameter="{Binding Path=.}"/>
+                                </StackLayout.GestureRecognizers>
+                                <Label Text="Rendszám"/>
+                                <Label Text="{Binding Path=Entity.PlateNumber}"/>
+                                <Label Text="Kiállítás dátuma"/>
+                                <Label Text="{Binding Path=Entity.IssuedDateTime}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Új hozzáadása"
+                    Command="{Binding Path=AddNewCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -11,12 +11,12 @@ namespace eVehicleStartupLog.Database
 {
     public class SQLiteDatabaseConnector
     {
-        private readonly SQLiteAsyncConnection _connection;
+        public readonly SQLiteAsyncConnection Connection;
 
         public SQLiteDatabaseConnector()
         {
-            _connection = new SQLiteAsyncConnection(Constans.SQLDatabaseAccessString);
-            _connection.CreateTablesAsync<Employee, Plate, Trip, Vehicle>().ConfigureAwait(true).GetAwaiter().GetResult();
+            Connection = new SQLiteAsyncConnection(Constans.SQLDatabaseAccessString);
+            Connection.CreateTablesAsync<Employee, Plate, Trip, Vehicle>().ConfigureAwait(true).GetAwaiter().GetResult();
         }
     }
 }

@@ -9,9 +9,9 @@ namespace eVehicleStartupLog.Interfaces
     {
         Task<UITrip> GetTrip(Guid id);
 
-        Task<IEnumerable<UITrip>> GetAllTrips();
+        Task<List<UITrip>> GetAllTrips();
 
-        Task<UITrip> SaveTrip(UITrip tripToSave);
+        Task SaveTrip(UITrip tripToSave);
 
         Task DeleteTrip(UITrip tripToDelete);
     }

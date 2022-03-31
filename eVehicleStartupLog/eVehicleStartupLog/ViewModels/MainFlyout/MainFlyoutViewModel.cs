@@ -3,11 +3,12 @@ using System.Threading.Tasks;
 using banditoth.Forms.RecurrenceToolkit.MVVM;
 using DryIoc;
 using eVehicleStartupLog.Interfaces;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace eVehicleStartupLog.ViewModels
 {
-    public class MainFlyoutViewModel : BaseViewModel
+    public partial class MainFlyoutViewModel : BaseViewModel
     {
         private readonly IErrorHandler _errorHandler;
 
@@ -18,7 +19,26 @@ namespace eVehicleStartupLog.ViewModels
 
         public void Initalize()
         {
-            App.SetFlyoutDetailPage();
+            _ = RequestLocationPermissionIfNeeded();
+            App.SetFlyoutDetailPage(Connector.CreateInstance<TripManagerViewModel>((vm, v) =>
+            {
+                vm.Initalize();
+            }));
+        }
+
+        private async Task RequestLocationPermissionIfNeeded()
+        {
+            try
+            {
+                if (await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>() != PermissionStatus.Granted)
+                {
+                    await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+                }
+            }
+            catch (Exception ex)
+            {
+                _errorHandler.HandleException(ex);
+            }
         }
 
         private async Task OpenPreviousTripList()

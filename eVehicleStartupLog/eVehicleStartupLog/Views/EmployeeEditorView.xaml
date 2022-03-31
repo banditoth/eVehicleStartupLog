@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="eVehicleStartupLog.Views.EmployeeEditorView">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Vezetéknév"/>
+            <Entry Text="{Binding Path=Entity.LastName}"/>
+            <Label Text="Keresztnév"/>
+            <Entry Text="{Binding Path=Entity.FirstName}"/>
+            <Label Text="Telefonszám"/>
+            <Entry Text="{Binding Path=Entity.PhoneNumber}" Keyboard="Telephone"/>
+            <Label Text="Vezetői engedély száma"/>
+            <Entry Text="{Binding Path=Entity.DriversLicenseId}"/>
+            <Label Text="Személyi igazolvány száma"/>
+            <Entry Text="{Binding Path=Entity.PersonalId}"/>
+            <Label Text="Alkalmazotti státusz kezdete"/>
+            <DatePicker Date="{Binding Path=Entity.EmploymentContractStartDate}"/>
+            <Button Text="Mentés"
+                    Command="{Binding Path=SaveCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

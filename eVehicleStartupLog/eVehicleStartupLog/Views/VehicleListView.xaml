@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="eVehicleStartupLog.Views.VehicleListView">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding Path=Items}"
+                      SelectionMode="None"
+                      x:Name="ListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference ListView}, Path=BindingContext.EditExistingCommand}"
+                                                          CommandParameter="{Binding Path=.}"/>
+                                </StackLayout.GestureRecognizers>
+                                <Label Text="Alvázszám"/>
+                                <Label Text="{Binding Path=Entity.VehicleIdentifier}"/>
+                                <Label Text="Gyártó"/>
+                                <Label Text="{Binding Path=Entity.Manufacturer}"/>
+                                <Label Text="Modell"/>
+                                <Label Text="{Binding Path=Entity.Model}" />
+                                <Label Text="Gyártás éve"/>
+                                <Label Text="{Binding Path=Entity.Year}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Új hozzáadása"
+                    Command="{Binding Path=AddNewCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

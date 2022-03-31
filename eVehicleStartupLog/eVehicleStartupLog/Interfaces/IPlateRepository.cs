@@ -9,9 +9,9 @@ namespace eVehicleStartupLog.Interfaces
     {
         Task<Plate> GetPlate(Guid id);
 
-        Task<IEnumerable<Plate>> GetAllPlates();
+        Task<List<Plate>> GetAllPlates();
 
-        Task<Plate> SavePlate(Plate plateToSave);
+        Task SavePlate(Plate plateToSave);
 
         Task DeletePlate(Plate plateToDelete);
     }

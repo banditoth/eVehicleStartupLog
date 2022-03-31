@@ -9,9 +9,9 @@ namespace eVehicleStartupLog.Interfaces
     {
         Task<Employee> GetEmployee(Guid id);
 
-        Task<IEnumerable<Employee>> GetAllEmployees();
+        Task<List<Employee>> GetAllEmployees();
 
-        Task<Employee> SaveEmployee(Employee employeeToSave);
+        Task SaveEmployee(Employee employeeToSave);
 
         Task DeleteEmployee(Employee employeeToDelete);
     }
