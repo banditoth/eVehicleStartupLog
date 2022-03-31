@@ -2,7 +2,7 @@
 
 ## Description
 
-Mobile app idea for the digitisation of the launch log of trial numbers in Hungary
+Mobile app idea for the digitisation of the launch log of trial number plates in Hungary
 
 ## Remarks
 
