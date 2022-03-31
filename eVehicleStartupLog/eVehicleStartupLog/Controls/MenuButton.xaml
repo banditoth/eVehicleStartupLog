@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="eVehicleStartupLog.Controls.MenuButton"
+    x:Name="this">
+    <ContentView.Content>
+        <Grid RowDefinitions="Auto" ColumnDefinitions="Auto,*">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding Source={x:Reference this}, Path=Command}"/>
+            </Grid.GestureRecognizers>
+
+            <Image Source="{Binding Source={x:Reference this}, Path=ImageSource}"
+                   WidthRequest="40"
+                   HeightRequest="40"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Grid.Column="0"/>
+            <Label Text="{Binding Source={x:Reference this}, Path=Text}"
+                   VerticalOptions="Center"
+                   Grid.Column="1"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

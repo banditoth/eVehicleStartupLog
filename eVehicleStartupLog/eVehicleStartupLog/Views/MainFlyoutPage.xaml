@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<FlyoutPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:eVehicleStartupLog.Controls"
+    x:Class="eVehicleStartupLog.Views.MainFlyoutPage">
+    <FlyoutPage.Flyout>
+        <ContentPage>
+            <Grid>
+                <controls:MenuButton Text="Alkalmazottak"
+                                     Grid.Row="0"
+                                     Command="{Binding Path=OpenEmployeesCommand}"/>
+                <controls:MenuButton Text="Rendszámok"
+                                     Grid.Row="0"
+                                     Command="{Binding Path=OpenPlatesCommand}"/>
+                <controls:MenuButton Text="Járművek"
+                                     Grid.Row="0"
+                                     Command="{Binding Path=OpenVehiclesCommand}"/>
+                <controls:MenuButton Text="Korábbi utak"
+                                     Grid.Row="0"
+                                     Command="{Binding Path=OpenPreviousTripsCommand}"/>
+            </Grid>
+        </ContentPage>
+    </FlyoutPage.Flyout>
+</FlyoutPage>
