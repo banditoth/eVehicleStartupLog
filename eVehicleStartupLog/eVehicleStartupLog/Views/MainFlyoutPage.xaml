@@ -6,20 +6,21 @@
     Title="eVehicleStartupLog">
     <FlyoutPage.Flyout>
         <ContentPage Title="Flyout">
-            <Grid>
+            <StackLayout>
                 <controls:MenuButton Text="Alkalmazottak"
-                                     Grid.Row="0"
                                      Command="{Binding Path=OpenEmployeesCommand}"/>
                 <controls:MenuButton Text="Rendszámok"
-                                     Grid.Row="0"
                                      Command="{Binding Path=OpenPlatesCommand}"/>
                 <controls:MenuButton Text="Járművek"
-                                     Grid.Row="0"
                                      Command="{Binding Path=OpenVehiclesCommand}"/>
                 <controls:MenuButton Text="Korábbi utak"
-                                     Grid.Row="0"
                                      Command="{Binding Path=OpenPreviousTripsCommand}"/>
-            </Grid>
+            </StackLayout>
         </ContentPage>
     </FlyoutPage.Flyout>
+    <FlyoutPage.Detail>
+        <ContentPage Title="Detail">
+
+        </ContentPage>
+    </FlyoutPage.Detail>
 </FlyoutPage>

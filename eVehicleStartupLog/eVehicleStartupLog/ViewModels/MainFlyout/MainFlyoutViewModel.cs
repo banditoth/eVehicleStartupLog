@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using banditoth.Forms.RecurrenceToolkit.MVVM;
 using DryIoc;
 using eVehicleStartupLog.Interfaces;
+using eVehicleStartupLog.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -10,17 +11,19 @@ namespace eVehicleStartupLog.ViewModels
 {
     public partial class MainFlyoutViewModel : BaseViewModel
     {
-        private readonly IErrorHandler _errorHandler;
+        private readonly IErrorHandler errorHandler;
+        private readonly IMvvmHelper mvvmHelper;
 
-        public MainFlyoutViewModel()
+        public MainFlyoutViewModel(IMvvmHelper mvvmHelper, IErrorHandler errorHandler)
         {
-            _errorHandler = App.GetContainer().Resolve<IErrorHandler>();
+            this.mvvmHelper = mvvmHelper;
+            this.errorHandler = errorHandler;
         }
 
         public void Initalize()
         {
             _ = RequestLocationPermissionIfNeeded();
-            App.SetFlyoutDetailPage(Connector.CreateInstance<TripManagerViewModel>((vm, v) =>
+            App.SetFlyoutDetailPage(mvvmHelper.GetInstance<TripManagerViewModel, TripManagerView>((vm, v) =>
             {
                 vm.Initalize();
             }));
@@ -37,7 +40,7 @@ namespace eVehicleStartupLog.ViewModels
             }
             catch (Exception ex)
             {
-                _errorHandler.HandleException(ex);
+                errorHandler.HandleException(ex);
             }
         }
 
@@ -45,14 +48,14 @@ namespace eVehicleStartupLog.ViewModels
         {
             try
             {
-                App.SetFlyoutDetailPage(Connector.CreateInstance<PreviousTripListViewModel>((vm, v) =>
+                App.SetFlyoutDetailPage(mvvmHelper.GetInstance<PreviousTripListViewModel, PreviousTripListView>((vm, v) =>
                 {
                     vm.Initalize();
                 }));
             }
             catch (Exception ex)
             {
-                _errorHandler.HandleException(ex);
+                errorHandler.HandleException(ex);
             }
         }
 
@@ -61,14 +64,14 @@ namespace eVehicleStartupLog.ViewModels
         {
             try
             {
-                App.SetFlyoutDetailPage(Connector.CreateInstance<PlatesListViewModel>((vm, v) =>
+                App.SetFlyoutDetailPage(mvvmHelper.GetInstance<PlatesListViewModel, PlateListView>((vm, v) =>
                 {
                     vm.Initalize();
                 }));
             }
             catch (Exception ex)
             {
-                _errorHandler.HandleException(ex);
+                errorHandler.HandleException(ex);
             }
         }
 
@@ -76,14 +79,14 @@ namespace eVehicleStartupLog.ViewModels
         {
             try
             {
-                App.SetFlyoutDetailPage(Connector.CreateInstance<EmployeesListViewModel>((vm, v) =>
+                App.SetFlyoutDetailPage(mvvmHelper.GetInstance<EmployeesListViewModel, EmployeeListView>((vm, v) =>
                 {
                     vm.Initalize();
                 }));
             }
             catch (Exception ex)
             {
-                _errorHandler.HandleException(ex);
+                errorHandler.HandleException(ex);
             }
         }
 
@@ -91,14 +94,14 @@ namespace eVehicleStartupLog.ViewModels
         {
             try
             {
-                App.SetFlyoutDetailPage(Connector.CreateInstance<VehiclesListViewModel>((vm, v) =>
+                App.SetFlyoutDetailPage(mvvmHelper.GetInstance<VehiclesListViewModel, VehicleListView>((vm, v) =>
                 {
                     vm.Initalize();
                 }));
             }
             catch (Exception ex)
             {
-                _errorHandler.HandleException(ex);
+                errorHandler.HandleException(ex);
             }
         }
     }

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using banditoth.Forms.RecurrenceToolkit.MVVM;
 using eVehicleStartupLog.Entities;
 using eVehicleStartupLog.Interfaces;
+using eVehicleStartupLog.Views;
 
 namespace eVehicleStartupLog.ViewModels
 {
@@ -10,11 +11,13 @@ namespace eVehicleStartupLog.ViewModels
     {
         private readonly IErrorHandler errorHandler;
         private readonly IPlateProvider plateProvider;
+        private readonly IMvvmHelper mvvmHelper;
 
-        public PlatesListViewModel(IErrorHandler errorHandler, IPlateProvider plateProvider)
+        public PlatesListViewModel(IErrorHandler errorHandler, IPlateProvider plateProvider, IMvvmHelper mvvmHelper)
         {
             this.errorHandler = errorHandler;
             this.plateProvider = plateProvider;
+            this.mvvmHelper = mvvmHelper;
         }
 
         internal override async Task AddNew()
@@ -44,7 +47,7 @@ namespace eVehicleStartupLog.ViewModels
         {
             try
             {
-                await Navigator.Instance.Navigation.PushAsync(Connector.CreateInstance<PlateEditorViewModel>((vm, v) =>
+                await Navigation.PushAsync(mvvmHelper.GetInstance<PlateEditorViewModel, PlateEditorView>((vm, v) =>
                 {
                     vm.Initalize(existingEntity);
                 }));

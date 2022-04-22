@@ -18,12 +18,12 @@ namespace eVehicleStartupLog
     {
         private static readonly Container _dependencyContainer = new Container();
 
-        public App ()
+        public App()
         {
             InitializeComponent();
             RegisterApplicationComponents();
 
-            MainPage = Connector.CreateInstance<MainFlyoutViewModel>((vm, v) =>
+            MainPage = GetContainer().Resolve<IMvvmHelper>().GetInstance<MainFlyoutViewModel, MainFlyoutPage>((vm, v) =>
             {
                 vm.Initalize();
             });
@@ -33,7 +33,7 @@ namespace eVehicleStartupLog
         {
             if(Current.MainPage is FlyoutPage flyout)
             {
-                flyout.Detail = pageToSet;
+                flyout.Detail = new NavigationPage(pageToSet);
                 flyout.IsPresented = false;
             }
         }
@@ -52,6 +52,8 @@ namespace eVehicleStartupLog
                 z.CreateMap<UIVehicle, Vehicle>();
                 z.CreateMap<UITrip, Trip>();
             })));
+
+            // Services
             _dependencyContainer.Register<IDialogHandler, DialogHandlerService>();
             _dependencyContainer.Register<IErrorHandler, ErrorHandlerService>();
             _dependencyContainer.Register<IEmployeeProvider, EmployeeProviderService>();
@@ -62,15 +64,28 @@ namespace eVehicleStartupLog
             _dependencyContainer.Register<ITripRepository, DatabaseContext>();
             _dependencyContainer.Register<IVehicleProvider, VehicleProviderService>();
             _dependencyContainer.Register<IVehicleRepository, DatabaseContext>();
+            _dependencyContainer.Register<IMvvmHelper, MvvmHelperService>();
+            // Views
+            _dependencyContainer.Register<EmployeeEditorView>();
+            _dependencyContainer.Register<EmployeeListView>();
+            _dependencyContainer.Register<MainFlyoutPage>();
+            _dependencyContainer.Register<PlateEditorView>();
+            _dependencyContainer.Register<PlateListView>();
+            _dependencyContainer.Register<PreviousTripListView>();
+            _dependencyContainer.Register<TripManagerView>();
+            _dependencyContainer.Register<VehicleEditorView>();
+            _dependencyContainer.Register<VehicleListView>();
+            // ViewModels
+            _dependencyContainer.Register<EmployeeEditorViewModel>();
+            _dependencyContainer.Register<EmployeesListViewModel>();
+            _dependencyContainer.Register<MainFlyoutViewModel>();
+            _dependencyContainer.Register<PlateEditorViewModel>();
+            _dependencyContainer.Register<PlatesListViewModel>();
+            _dependencyContainer.Register<PreviousTripListViewModel>();
+            _dependencyContainer.Register<TripManagerViewModel>();
+            _dependencyContainer.Register<VehicleEditorViewModel>();
+            _dependencyContainer.Register<VehiclesListViewModel>();
 
-            Connector.Register(typeof(EmployeeEditorViewModel), typeof(EmployeeEditorView));
-            Connector.Register(typeof(EmployeesListViewModel), typeof(EmployeeListView));
-            Connector.Register(typeof(MainFlyoutViewModel), typeof(MainFlyoutPage));
-            Connector.Register(typeof(PlateEditorViewModel), typeof(PlateEditorView));
-            Connector.Register(typeof(PlatesListViewModel), typeof(PlateListView));
-            Connector.Register(typeof(TripManagerViewModel), typeof(TripManagerView));
-            Connector.Register(typeof(VehicleEditorViewModel), typeof(VehicleEditorView));
-            Connector.Register(typeof(VehiclesListViewModel), typeof(VehicleListView));
         }
 
         protected override void OnStart ()
